@@ -1,0 +1,23 @@
+body{
+  background-color: grey;
+}
+
+
+#plateau{
+  width: 800px;
+  height:800px;
+  background-color: white;
+  margin: auto;
+  border-style: solid;
+  position: relative;
+}
+#pion{
+  width: 40px;
+  height: 40px;
+  background-color: blue;
+  border-style: double;
+  border-color: grey;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}

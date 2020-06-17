@@ -1,5 +1,5 @@
 var pion = document.getElementById('pion'),
-  s = pion.style,
+  stylePion = pion.style,
   x = pion.offsetLeft,
   y = pion.offsetTop;
 
@@ -20,6 +20,6 @@ document.onkeydown = function(event){
       x = x - 40;
       break;
   }
-  s.left = String(x) + 'px';
-  s.top = String(y) + 'px';
+  stylePion.left = String(x) + 'px';
+  stylePion.top = String(y) + 'px';
 }

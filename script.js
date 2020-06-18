@@ -9,46 +9,10 @@ var plateau = document.getElementById('plateau');
 plateau.style.width = WINDOW_WIDTH;
 plateau.style.height = WINDOW_HEIGHT;
 
-
 var pion = document.getElementById('pion'),
   stylePion = pion.style,
   x = pion.offsetLeft,
   y = pion.offsetTop;
-
-document.onkeydown = function(event){
-  var event = event || window.event,
-  keyCode = event.keyCode;
-  switch(keyCode){
-    case 38:
-      y = y - 40; // ou y-=40;
-      if (y < 0) {
-        y = 0;
-      }
-      break;
-    case 39:
-      x = x + 40;
-      if (x > 760) {
-      x = 760;
-      }
-      break;
-    case 40:
-      y = y + 40;
-      if (y > 760) {
-        y = 760;
-      }
-      break;
-    case 37:
-      x = x - 40;
-      if (x < 0) {
-        x = 0;
-      }
-      break;
-
-  }
-  stylePion.left = String(x) + 'px';
-  stylePion.top = String(y) + 'px';
-}
-
 
 var blockGrid = [];
 for(var i = 0; i < H_GRID; i++){
@@ -59,7 +23,16 @@ for(var i = 0; i < H_GRID; i++){
     block.style.height = "40px";
     block.style.display = "flex";
     block.style.position = "absolute";
-    block.style.backgroundColor = "brown";
+
+    if (random100() > 90){
+      block.style.backgroundColor = "black";
+      block.traverser = false;
+    }
+    else {
+      block.style.backgroundColor = "green";
+      block.traverser = true;
+    }
+
     block.style.marginLeft = (i * GRID_SIZE).toString()+"px";
     block.style.marginTop = (j * GRID_SIZE).toString()+"px";
 
@@ -68,4 +41,46 @@ for(var i = 0; i < H_GRID; i++){
   }
 }
 
-blockGrid[10][10].style.backgroundColor = "blue";
+//blockGrid[10][10].style.backgroundColor = "blue";
+
+document.onkeydown = function(event){
+  var event = event || window.event,
+  keyCode = event.keyCode;
+  switch(keyCode){
+    case 38:
+      y = y - GRID_SIZE; // ou y-=40;
+      if (y < 0) {
+        y = 0;
+      }
+      break;
+    case 39:
+      x = x + GRID_SIZE;
+      if (x > WINDOW_WIDTH - GRID_SIZE) {
+        x = WINDOW_WIDTH - GRID_SIZE;
+      }
+      break;
+    case 40:
+      y = y + GRID_SIZE;
+      if (y > WINDOW_HEIGHT - GRID_SIZE) {
+        y = WINDOW_HEIGHT - GRID_SIZE;
+      }
+      break;
+    case 37:
+      x = x - GRID_SIZE;
+      if (x < 0) {
+        x = 0;
+      }
+      break;
+
+  }
+  stylePion.left = String(x) + 'px';
+  stylePion.top = String(y) + 'px';
+}
+
+function randomColor(){
+  return "#" + ((1<<24)*Math.random()|0).toString(16);
+}
+
+function random100() {
+  return Math.floor(Math.random() * 100);
+}

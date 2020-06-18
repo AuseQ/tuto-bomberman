@@ -108,3 +108,5 @@ Pour que le pion ne sorte pas on va tester sa position en fonction de la touche 
   }
 
   ```
+
+## Étape 5 : Des éléments sont générés aléatoirement sur le plateau.

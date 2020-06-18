@@ -4,11 +4,8 @@ body{
 
 
 #plateau{
-  width: 800px;
-  height:800px;
   background-color: white;
   margin: auto;
-  border-style: solid;
   position: relative;
 }
 #pion{
@@ -19,4 +16,5 @@ body{
   border-color: grey;
   border-width: 1px;
   position: absolute;
+  z-index: 100;
 }

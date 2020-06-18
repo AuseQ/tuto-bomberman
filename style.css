@@ -12,10 +12,11 @@ body{
   position: relative;
 }
 #pion{
-  width: 40px;
-  height: 40px;
+  width: 39px;
+  height: 39px;
   background-color: blue;
   border-style: double;
   border-color: grey;
+  border-width: 1px;
   position: absolute;
 }

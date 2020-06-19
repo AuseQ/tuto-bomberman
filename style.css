@@ -4,18 +4,28 @@ body{
 
 
 #plateau{
-  width: 800px;
-  height:800px;
+  width: 680px;
+  height:680px;
   background-color: white;
   margin: auto;
   border-style: solid;
   position: relative;
 }
 #pion{
-  width: 40px;
-  height: 40px;
+  width: 39px;
+  height: 39px;
   background-color: blue;
   border-style: double;
   border-color: grey;
   position: absolute;
+  border-width: 1px;
+}
+#murs{
+width: 100%;
+display: flex;
+}
+.mur{
+  background-color: green;
+  width: 40px;
+  height: 40px;
 }

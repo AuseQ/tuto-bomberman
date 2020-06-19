@@ -75,3 +75,36 @@ On écoute l'évenement touche du clavier préssée. Lorsqu'une touche est prés
 On change la position du pion en appliquant la nouvelle valeur obtenue après avoir appuyé sur une touche à l'offset. On lui rajoute son unité 'px'(pixel). Ainsi la nouvelle position est appliquée dans le CSS.
 
 ## Étape 4 : Les bords du plateau limitent le déplacement du pion.
+
+Pour que le pion ne sorte pas on va tester sa position en fonction de la touche sur laquelle on appuie. Par exemple si l'on appuie vers le haut (```case 38```) on teste si sa position est inférieure à 0, 0 étant le bord supérieur du plateau. Si c'est le cas on assigne au pion une position "y" égale à 0 :
+
+  ```
+  switch(keyCode){
+    case 38:
+      y = y - 40; // ou y-=40;
+      if (y < 0) { // içi on effectue le test cité dans l'exemple.
+        y = 0;
+      }
+      break;
+    case 39:
+      x = x + 40;
+      if (x > 800) {
+      x = 800;
+      }
+      break;
+    case 40:
+      y = y + 40;
+      if (y > 800) {
+        y = 800;
+      }
+      break;
+    case 37:
+      x = x - 40;
+      if (x < 0) {
+        x = 0;
+      }
+      break;
+
+  }
+
+  ```

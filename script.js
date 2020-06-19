@@ -9,17 +9,48 @@ document.onkeydown = function(event){
   switch(keyCode){
     case 38:
       y = y - 40; // ou y-=40;
+      if (y < 0) { // içi on effectue le test cité dans l'exemple.
+        y = 0;
+      }
       break;
     case 39:
       x = x + 40;
+      if (x > 640) {
+      x = 640;
+      }
       break;
     case 40:
       y = y + 40;
+      if (y > 640) {
+        y = 640;
+      }
       break;
     case 37:
       x = x - 40;
+      if (x < 0) {
+        x = 0;
+      }
       break;
-  }
+}
   stylePion.left = String(x) + 'px';
   stylePion.top = String(y) + 'px';
+}
+
+
+
+for (var i = 0; i < Math.floor(Math.random() * 80); i++) {
+  var divgen = document.createElement("div");
+  divgen.setAttribute("class", "mur");
+  var element = document.getElementById("murs");
+  element.appendChild(divgen);
+}
+var murRandom = document.getElementsByClassName("class='mur'");
+for (var j = 0; j < murRandom.length; i++) {
+var murcss = murRandom.style,
+x = murRandom.offsetLeft,
+y = murRandom.offsetTop;
+x = Math.floor(Math.random() * 640);
+y = Math.floor(Math.random() * 640);
+murcss.left = String(x) + 'px';
+murcss.top = String(y) + 'px';
 }

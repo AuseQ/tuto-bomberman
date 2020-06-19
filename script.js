@@ -48,30 +48,21 @@ document.onkeydown = function(event){
   keyCode = event.keyCode;
   switch(keyCode){
     case 38:
+      if (y > 0 && blockGrid[x / GRID_SIZE][y / GRID_SIZE -1].traverser)
       y = y - GRID_SIZE; // ou y-=40;
-      if (y < 0) {
-        y = 0;
-      }
       break;
     case 39:
+      if (x < WINDOW_WIDTH && blockGrid[x / GRID_SIZE +1][y / GRID_SIZE].traverser)
       x = x + GRID_SIZE;
-      if (x > WINDOW_WIDTH - GRID_SIZE) {
-        x = WINDOW_WIDTH - GRID_SIZE;
-      }
       break;
     case 40:
+      if (y < WINDOW_HEIGHT && blockGrid[x / GRID_SIZE][y / GRID_SIZE +1].traverser)
       y = y + GRID_SIZE;
-      if (y > WINDOW_HEIGHT - GRID_SIZE) {
-        y = WINDOW_HEIGHT - GRID_SIZE;
-      }
       break;
     case 37:
+      if (x > 0 && blockGrid[x / GRID_SIZE -1][y / GRID_SIZE].traverser)
       x = x - GRID_SIZE;
-      if (x < 0) {
-        x = 0;
-      }
       break;
-
   }
   stylePion.left = String(x) + 'px';
   stylePion.top = String(y) + 'px';

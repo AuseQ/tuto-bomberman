@@ -11,8 +11,8 @@ plateau.style.height = WINDOW_HEIGHT;
 
 var pion = document.getElementById('pion'),
   stylePion = pion.style,
-  x = pion.offsetLeft,
-  y = pion.offsetTop;
+  x = 0,
+  y = 0;
 
 var blockGrid = [];
 for(var i = 0; i < H_GRID; i++){
@@ -47,25 +47,29 @@ document.onkeydown = function(event){
   var event = event || window.event,
   keyCode = event.keyCode;
   switch(keyCode){
+    // Up
     case 38:
-      if (y > 0 && blockGrid[x / GRID_SIZE][y / GRID_SIZE -1].traverser)
-      y = y - GRID_SIZE; // ou y-=40;
+      if (y > 0 && blockGrid[x][y - 1].traverser)
+      y--; // ou y-=40;
       break;
+    // Right
     case 39:
-      if (x < WINDOW_WIDTH && blockGrid[x / GRID_SIZE +1][y / GRID_SIZE].traverser)
-      x = x + GRID_SIZE;
+      if (x < H_GRID -1 && blockGrid[x + 1][y].traverser)
+      x++;
       break;
+    // Down
     case 40:
-      if (y < WINDOW_HEIGHT && blockGrid[x / GRID_SIZE][y / GRID_SIZE +1].traverser)
-      y = y + GRID_SIZE;
+      if (y < H_GRID -1 && blockGrid[x][y + 1].traverser)
+      y++;
       break;
+    // Left
     case 37:
-      if (x > 0 && blockGrid[x / GRID_SIZE -1][y / GRID_SIZE].traverser)
-      x = x - GRID_SIZE;
+      if (x > 0 && blockGrid[x - 1][y].traverser)
+      x--;
       break;
   }
-  stylePion.left = String(x) + 'px';
-  stylePion.top = String(y) + 'px';
+  stylePion.left = String(x * GRID_SIZE) + 'px';
+  stylePion.top = String(y * GRID_SIZE) + 'px';
 }
 
 function randomColor(){

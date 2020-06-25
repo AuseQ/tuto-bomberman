@@ -1,6 +1,6 @@
 # tuto-bomberman
 
-## Étape 1 : Créer un plateau en CSS de 800 par 800 px.
+## Étape 1 : Créer un plateau en CSS de 800 par 800 px et lui supperposer une grille en javascript.
 
 Dans notre fichier .html on crée une ```<div id="plateau">```. Dans notre fichier style.css on lui applique une largeur et une hauteur de 800px ainsi qu'une couleur de fond. On peux personnaliser le plateau à notre goût :
 
@@ -13,6 +13,23 @@ Dans notre fichier .html on crée une ```<div id="plateau">```. Dans notre fichi
     border-style: solid;
   }
   ```
+
+Dans un fichier script.js on definit des constantes pour creer une grille. Une constante de hauteur et une constante de largeur et une constante pour la taille des cases:
+
+```
+const H_GRID = 24;
+const V_GRID = 16;
+const GRID_SIZE = 40;
+```
+en suite on calcule la largeur du platteau et la hauteur du plateau en multipliant le nombre de cases en hauteur par la largeur d'une case et le nombre de case en largeur par la largeur d'une case:
+
+```
+const WINDOW_WIDTH = H_GRID * GRID_SIZE;
+const WINDOW_HEIGHT = V_GRID * GRID_SIZE;
+```
+enfin on crée une variable plateau en javascript à laquelle on affecte la methode getElementById qu'on applique à document.
+On applique une proprietee CSS au plateau en lui renvoyant la valeur des constantes "WINDOW_WIDTH" "WINDOW_HEIGHT".
+
 
 ## Étape 2 : Créer un pion en CSS de 40 par 40 px.
 
@@ -81,25 +98,25 @@ Pour que le pion ne sorte pas on va tester sa position en fonction de la touche 
   ```
   switch(keyCode){
     case 38:
-      y = y - 40; // ou y-=40;
+      y = y - GRID_SIZE; // ou y-=GRID_SIZE;
       if (y < 0) { // içi on effectue le test cité dans l'exemple.
         y = 0;
       }
       break;
     case 39:
-      x = x + 40;
-      if (x > 760) {
-      x = 760;
+      x = x + GRID_SIZE;
+      if (x > WINDOW_WIDTH - GRID_SIZE) {
+      x = WINDOW_WIDTH - GRID_SIZE;
       }
       break;
     case 40:
-      y = y + 40;
-      if (y > 760) {
-        y = 760;
+      y = y + GRID_SIZE;
+      if (y > WINDOW_HEIGHT - GRID_SIZE) {
+        y = WINDOW_HEIGHT - GRID_SIZE;
       }
       break;
     case 37:
-      x = x - 40;
+      x = x - GRID_SIZE;
       if (x < 0) {
         x = 0;
       }
@@ -110,3 +127,17 @@ Pour que le pion ne sorte pas on va tester sa position en fonction de la touche 
   ```
 
 ## Étape 5 : Des éléments sont générés aléatoirement sur le plateau.
+En CSS on va creer un nouvel element dans notre fichier html qui va avoir une ID "vilain", on lui attribue une hauteur et une largeur definie ainsi qu'une position absolue dans le css:
+
+```
+#vilain{
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  background-color: yellow;
+  background-size: contain;
+  left: 0;
+  top : 0;
+  z-index: 95;
+}
+```

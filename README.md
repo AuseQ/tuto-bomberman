@@ -21,7 +21,7 @@ const H_GRID = 24;
 const V_GRID = 16;
 const GRID_SIZE = 40;
 ```
-en suite on calcule la largeur du platteau et la hauteur du plateau en multipliant le nombre de cases en hauteur par la largeur d'une case et le nombre de case en largeur par la largeur d'une case:
+en suite on calcule la largeur du plateau et la hauteur du plateau en multipliant le nombre de cases en hauteur par la largeur d'une case et le nombre de case en largeur par la largeur d'une case:
 
 ```
 const WINDOW_WIDTH = H_GRID * GRID_SIZE;
@@ -127,7 +127,7 @@ Pour que le pion ne sorte pas on va tester sa position en fonction de la touche 
   ```
 
 ## Étape 5 : Des éléments sont générés aléatoirement sur le plateau.
-En CSS on va creer un nouvel element dans notre fichier html qui va avoir une ID "vilain", on lui attribue une hauteur et une largeur definie ainsi qu'une position absolue dans le css:
+En CSS on va creer un nouvel element dans notre fichier html qui va avoir une id "vilain", on lui attribue une hauteur et une largeur definie ainsi qu'une position absolue dans le css:
 
 ```
 #vilain{

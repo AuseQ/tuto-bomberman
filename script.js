@@ -22,8 +22,6 @@ var pion = document.getElementById('pion'),
 
 
 
-
-
 var blockGrid = [];
 for (var i = 0; i < H_GRID; i++) {
   blockGrid.push([]);
@@ -55,16 +53,16 @@ for (var i = 0; i < H_GRID; i++) {
 
 
 var vilainListe = []
-for (var i = 0; i < 100; i++) {
+for (var i = 0; i < 5; i++) {
   let vilain = document.createElement('div');
 
-let x = 0;
-let y = 0;
-while (!blockGrid[x][y].traverser || (x === 0 && y ===0)) {
-x = Math.floor(Math.random() * (H_GRID))
-y = Math.floor(Math.random() * (V_GRID))
-}
-blockGrid[x][y].traverser = false;
+  let x = 0;
+  let y = 0;
+  while (!blockGrid[x][y].traverser || (x === 0 && y === 0)) {
+    x = Math.floor(Math.random() * (H_GRID))
+    y = Math.floor(Math.random() * (V_GRID))
+  }
+  blockGrid[x][y].traverser = false;
   vilain.vilainX = x;
   vilain.vilainY = y;
   vilain.direction = "right";
@@ -98,7 +96,7 @@ function loop() {
       let vilainX = vilain.vilainX
       let vilainY = vilain.vilainY
       let direction = vilain.direction
-      blockGrid[vilainX][vilainY].traverser = true ;
+      blockGrid[vilainX][vilainY].traverser = true;
       switch (direction) {
         case "left":
           if (vilainY > 0 && blockGrid[vilainX][vilainY - 1].traverser)
@@ -112,7 +110,7 @@ function loop() {
           break;
 
         case "up":
-          console.log(vilainY)
+          //console.log(vilainY)
           if (vilainY < V_GRID - 1 && blockGrid[vilainX][vilainY + 1].traverser)
 
             vilainY++;
@@ -147,7 +145,7 @@ function loop() {
       vilain.vilainX = vilainX
       vilain.vilainY = vilainY
       vilain.direction = direction
-      blockGrid[vilainX][vilainY].traverser = false ;
+      blockGrid[vilainX][vilainY].traverser = false;
     }
 
     frame = 0;
@@ -159,12 +157,6 @@ function loop() {
 }
 
 window.requestAnimationFrame(loop);
-
-
-
-
-
-
 
 
 
@@ -192,14 +184,17 @@ document.onkeydown = function(event) {
       if (x > 0 && blockGrid[x - 1][y].traverser)
         x--;
       break;
-      
-        case 32:
-      //if (!blockGrid[x / GRID_SIZE][y / GRID_SIZE].bombe) {
+
+    case 32:
+      if (!blockGrid[x][y].bombe) {
         createBombe(blockGrid);
-      //}
+      }
       break;
-      default: return;
+    default:
+      return;
   }
+
+
   stylePion.left = String(x * GRID_SIZE) + 'px';
   stylePion.top = String(y * GRID_SIZE) + 'px';
 }

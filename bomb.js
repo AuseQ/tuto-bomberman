@@ -19,8 +19,8 @@ function createBombe(blockGrid) {
     if (bombes[i].libre && !bombeset) {
 
       var bombe = bombes[i];
-        bombe.libre = false;
-        bombeset = true;
+      bombe.libre = false;
+      bombeset = true;
 
       bombe.style.left = String(x * GRID_SIZE) + "px";
       bombe.style.top = String(y * GRID_SIZE) + "px";
@@ -31,7 +31,6 @@ function createBombe(blockGrid) {
       blockGrid[bombe.x][bombe.y].bombe = true;
       document.getElementById('plateau').appendChild(bombe);
 
-
       setTimeout(function explose() {
         bombe.remove();
         blockGrid[bombe.x][bombe.y].traverser = true;
@@ -39,7 +38,6 @@ function createBombe(blockGrid) {
         bombe.libre = true;
       }, 2000);
 
-      //}
     }
   }
 }

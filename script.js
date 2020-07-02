@@ -192,6 +192,13 @@ document.onkeydown = function(event) {
       if (x > 0 && blockGrid[x - 1][y].traverser)
         x--;
       break;
+      
+        case 32:
+      //if (!blockGrid[x / GRID_SIZE][y / GRID_SIZE].bombe) {
+        createBombe(blockGrid);
+      //}
+      break;
+      default: return;
   }
   stylePion.left = String(x * GRID_SIZE) + 'px';
   stylePion.top = String(y * GRID_SIZE) + 'px';

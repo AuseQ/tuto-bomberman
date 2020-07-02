@@ -15,13 +15,6 @@ var pion = document.getElementById('pion'),
   y = 0;
 
 
-
-
-
-
-
-
-
 var blockGrid = [];
 for (var i = 0; i < H_GRID; i++) {
   blockGrid.push([]);

@@ -141,3 +141,89 @@ En CSS on va creer un nouvel element dans notre fichier html qui va avoir une id
   z-index: 95;
 }
 ```
+## Étape 6 : Les éléments limitent le déplacement du pion.
+
+
+## Étape 7 : Récupérer un sprite sheet sur internet et le mettre au pion.
+
+
+## Étape 8 : Sur la base du sprite sheet, créer un effet de marche lorsque le pion se déplace.
+
+
+## Étape 9 : Des éléments apparaissent aléatoirement et se déplacent aléatoirement.
+
+
+## Étape 10 : Lorsqu'ils touchent le pion, les éléments qui se déplacent détruisent le pion.
+
+
+## Étape 11 : Mettre un sprite aux ennemis.
+
+
+## Étape 12 : Le pion pose une bombe en appuyant sur la touche space.
+
+tout d'abord on créer un variable pour une bombe avec ses caracteristiques :
+
+```
+let bombes = [];
+
+for (var i = 0; i < 3; i++) {
+  bombe = document.createElement('div');
+  bombe.style.width = GRID_SIZE + "px";
+  bombe.style.height = GRID_SIZE + "px";
+  bombe.style.backgroundColor = "red";
+  bombe.style.backgroundSize = "contain";
+  bombe.style.position = 'absolute';
+  bombe.style.zIndex = "100";
+  bombe.libre = true;
+  bombe.id = "bombe" + String(i);
+  bombes.push(bombe);
+}
+```
+on ajoute la fonction pour que notre pion puisse posé la bombe et les coordonnées :
+
+```
+function createBombe(blockGrid) {
+  let bombeset = false
+  for (var i = 0; i < bombes.length; i++) {
+    if (bombes[i].libre && !bombeset) {
+      var bombe = bombes[i];
+      bombe.libre = false;
+      bombeset = true;
+
+      bombe.style.left = String(x * GRID_SIZE) + "px";
+      bombe.style.top = String(y * GRID_SIZE) + "px";
+      bombe.x = x;
+      bombe.y = y;
+    }
+  }
+```
+
+puis on ajoute dans le script un evenement pour que notre pion puisse posé la bombe avec la touche espace :
+
+```
+case 32:
+      if (!blockGrid[x][y].bombe) {
+        createBombe(blockGrid);
+      }
+      break;
+    default:
+      return;
+  }
+```
+
+
+## Étape 13 : la bombe explose au bout de quelques secondes.
+
+pour que la bombe disparaisse au bout de quelques seconde on ajoute dans notre fonction un setTimeout et  un bombe.remove() avec les coordonnées de la bombe a faire disparaitre 
+```
+setTimeout(function explose() {
+        if (bombe.x < H_GRID - 1) {
+```
+```
+bombe.remove();
+       blockGrid[bombe.x][bombe.y].traverser = true;
+       blockGrid[bombe.x][bombe.y].bombe = false;
+       bombe.libre = true;
+       blockGrid[bombe.x][bombe.y].style.backgroundColor = "green";
+     }, 2000);
+```

@@ -53,13 +53,87 @@ function createBombe(blockGrid) {
           blockGrid[bombe.x][bombe.y - 1].style.backgroundColor = "green";
         }
 
+        //vérifie la presence d'ennemis
+        for (var i = 0; i < vilainListe.length; i++) {
+          if (parseInt(bombe.style.left) == vilainListe[i].offsetLeft && parseInt(bombe.style.top) - GRID_SIZE == vilainListe[i].offsetTop ) {
+            vilainListe[i].traverser = true;
+            vilainListe[i].remove();
+            vilainListe.splice(i,1);
+            break;
+          }
+          if (parseInt(bombe.style.left)- GRID_SIZE == vilainListe[i].offsetLeft && parseInt(bombe.style.top) == vilainListe[i].offsetTop ) {
+            vilainListe[i].traverser = true;
+            vilainListe[i].remove();
+            vilainListe.splice(i,1);
+            break;
+          }
+          if (parseInt(bombe.style.left) + GRID_SIZE == vilainListe[i].offsetLeft && parseInt(bombe.style.top) == vilainListe[i].offsetTop ) {
+            vilainListe[i].traverser = true;
+            vilainListe[i].remove();
+            vilainListe.splice(i,1);
+            break;
+          }
+          if (parseInt(bombe.style.left) == vilainListe[i].offsetLeft && parseInt(bombe.style.top) + GRID_SIZE == vilainListe[i].offsetTop ) {
+            vilainListe[i].traverser = true;
+            vilainListe[i].remove();
+            vilainListe.splice(i,1);
+            break;
+          }
+
+        }
+
+
+        //verifie la presence du joueur
+
+          if (bombe.x == x && bombe.y == y ) {
+            pion.traverser = true;
+            pion.remove();
+            setTimeout(gameOver,1000);
+          }
+
+          if (bombe.x == x && bombe.y == y-1 ) {
+            pion.traverser = true;
+            pion.remove();
+            setTimeout(gameOver,1000);
+          }
+
+          if (bombe.x == x-1 && bombe.y == y ) {
+            pion.traverser = true;
+            pion.remove();
+            setTimeout(gameOver,1000);
+          }
+          if (bombe.x == x+1 && bombe.y == y ) {
+            pion.traverser = true;
+            pion.remove();
+            setTimeout(gameOver,1000);
+          }
+          if (bombe.x == x && bombe.y == y+1 ) {
+            pion.traverser = true;
+            pion.remove();
+            setTimeout(gameOver,1000);
+          }
+
+
         bombe.remove();
         blockGrid[bombe.x][bombe.y].traverser = true;
         blockGrid[bombe.x][bombe.y].bombe = false;
         bombe.libre = true;
         blockGrid[bombe.x][bombe.y].style.backgroundColor = "green";
+        if (vilainListe.length == 0) {
+          setTimeout(victoire,1000);
+        }
       }, 2000);
 
     }
   }
+}
+
+function gameOver(){
+  alert("Game over !!");
+  document.location.reload(true);
+}
+
+function victoire(){
+  alert("Victoire !!");
+  document.location.reload(true);
 }
